@@ -6,221 +6,112 @@
 <title>Adjective Explorer! Order of Adjectives Quiz</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #e8f4fd; min-height: 100vh; padding: 16px; color: #333; display: flex; justify-content: center; align-items: flex-start; }
+.container { width: 100%; max-width: 480px; margin: 0 auto; }
 
-body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: #e8f4fd;
-  min-height: 100vh;
-  padding: 16px;
-  color: #333;
-}
-
-/* Updated back to your perfect 800px screen layout */
-.container { 
-  max-width: 800px; 
-  margin: 0 auto; 
-}
-
-/* ── MENU ── */
 #menuScreen { display: block; }
 #quizScreen { display: none; }
 #endScreen  { display: none; }
 
-.menu-header {
-  text-align: center;
-  padding: 30px 16px 24px;
-}
+.menu-header { text-align: center; padding: 30px 16px 24px; }
 .menu-header .school-icon { font-size: 2.8rem; margin-bottom: 10px; }
 .menu-header h1 { font-size: 2rem; font-weight: 900; color: #222; }
 .menu-header h1 span { color: #f5a623; }
 .menu-header p { color: #888; font-size: 0.95rem; margin-top: 4px; }
-
-.unit-label {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 0.78rem; font-weight: 800; color: #888;
-  letter-spacing: 1.2px; text-transform: uppercase;
-  margin: 18px 0 14px;
-}
-
-.unit-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-bottom: 14px;
-}
-
-.unit-card {
-  border: 2px solid transparent;
-  border-radius: 16px;
-  padding: 28px 16px 22px;
-  text-align: center;
-  cursor: pointer;
-  transition: transform 0.18s, box-shadow 0.18s;
-  background: white;
-}
+.unit-label { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; font-weight: 800; color: #888; letter-spacing: 1.2px; text-transform: uppercase; margin: 18px 0 14px; }
+.unit-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.unit-card { border: 2px solid transparent; border-radius: 16px; padding: 24px 14px 20px; text-align: center; cursor: pointer; transition: transform 0.18s, box-shadow 0.18s; background: white; }
 .unit-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
-
 .unit-card.green  { background: #edfaf2; border-color: #b2dfcb; }
 .unit-card.orange { background: #fff4e5; border-color: #ffd09b; }
 .unit-card.blue   { background: #eaf3ff; border-color: #b3cef5; }
 .unit-card-full   { grid-column: 1 / -1; background: #f5eeff; border-color: #cdb0f0; }
-
 .unit-card .icon { font-size: 2rem; margin-bottom: 10px; }
-.unit-card .part-label {
-  font-size: 0.72rem; font-weight: 800; letter-spacing: 1px;
-  text-transform: uppercase; margin-bottom: 4px;
-}
+.unit-card .part-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
 .unit-card.green  .part-label { color: #2e8b57; }
 .unit-card.orange .part-label { color: #b85c00; }
 .unit-card.blue   .part-label { color: #2060c0; }
 .unit-card-full   .part-label { color: #7b35c1; }
-
-.unit-card h3 { font-size: 1.1rem; font-weight: 800; color: #222; margin-bottom: 6px; }
+.unit-card h3 { font-size: 1rem; font-weight: 800; color: #222; margin-bottom: 6px; }
 .unit-card .q-count { font-size: 0.82rem; color: #999; }
 
-/* ── QUIZ SCREEN ── */
-.quiz-header {
-  background: linear-gradient(135deg, #f5a623, #f76b1c);
-  border-radius: 18px;
-  color: white;
-  text-align: center;
-  padding: 22px 16px 18px;
-  margin-bottom: 18px;
-  box-shadow: 0 4px 14px rgba(247,107,28,0.28);
-}
+/* QUIZ */
+.quiz-header { background: linear-gradient(135deg, #f5a623, #f76b1c); border-radius: 18px; color: white; text-align: center; padding: 22px 16px 18px; margin-bottom: 18px; box-shadow: 0 4px 14px rgba(247,107,28,0.28); }
 .quiz-header h2 { font-size: 1.45rem; font-weight: 800; margin-bottom: 3px; }
 .quiz-header p  { font-size: 0.88rem; opacity: 0.9; }
-
-.top-bar {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 6px; gap: 10px;
-}
-.exit-btn {
-  background: white;
-  border: 2px solid #f5a623;
-  color: #e65100;
-  font-weight: 700;
-  font-size: 0.85rem;
-  border-radius: 8px;
-  padding: 7px 14px;
-  cursor: pointer;
-  transition: background 0.15s;
-  white-space: nowrap;
-}
+.top-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; gap: 10px; }
+.exit-btn { background: white; border: 2px solid #f5a623; color: #e65100; font-weight: 700; font-size: 0.85rem; border-radius: 8px; padding: 7px 14px; cursor: pointer; white-space: nowrap; }
 .exit-btn:hover { background: #fff3e0; }
-
 .progress-wrap { flex: 1; }
-.progress-bar-bg {
-  background: #ffe0b2; border-radius: 10px; height: 11px; overflow: hidden;
-}
-.progress-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #43e97b, #38f9d7);
-  border-radius: 10px;
-  transition: width 0.4s;
-}
+.progress-bar-bg { background: #ffe0b2; border-radius: 10px; height: 11px; overflow: hidden; }
+.progress-bar-fill { height: 100%; background: linear-gradient(90deg, #43e97b, #38f9d7); border-radius: 10px; transition: width 0.4s; }
 .progress-label { font-size: 0.78rem; color: #999; margin-top: 3px; text-align: center; }
-.score-display  { font-size: 0.85rem; color: #888; text-align: right; margin-bottom: 10px; }
-
-/* Section header */
-.section-header {
-  background: linear-gradient(135deg, #f5a623, #f76b1c);
-  color: white;
-  border-radius: 12px 12px 0 0;
-  padding: 11px 18px;
-  font-weight: 700;
-  font-size: 0.95rem;
-  display: flex; align-items: center; gap: 8px;
-}
-
-/* Question card */
-.question-card {
-  background: white;
-  border-radius: 0 0 16px 16px;
-  padding: 22px 20px 18px;
-  margin-bottom: 18px;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.07);
-}
-.question-text {
-  font-size: 1.03rem; font-weight: 600; color: #333;
-  margin-bottom: 16px; line-height: 1.5;
-}
-
-/* Options */
+.score-display { font-size: 0.85rem; color: #888; text-align: right; margin-bottom: 10px; }
+.section-header { background: linear-gradient(135deg, #f5a623, #f76b1c); color: white; border-radius: 12px 12px 0 0; padding: 11px 18px; font-weight: 700; font-size: 0.95rem; }
+.question-card { background: white; border-radius: 0 0 16px 16px; padding: 22px 20px 18px; margin-bottom: 18px; box-shadow: 0 3px 12px rgba(0,0,0,0.07); }
+.question-text { font-size: 1rem; font-weight: 600; color: #333; margin-bottom: 16px; line-height: 1.5; white-space: pre-line; }
 .options-grid { display: flex; flex-direction: column; gap: 10px; }
-.option-btn {
-  background: #fff8f0;
-  border: 2px solid #ffd0a0;
-  border-radius: 10px;
-  padding: 11px 16px;
-  font-size: 0.96rem; font-weight: 500; color: #444;
-  cursor: pointer; text-align: left;
-  transition: all 0.17s;
-}
-.option-btn:hover:not(:disabled) {
-  background: #ffe0b2; border-color: #f5a623; transform: translateX(3px);
-}
-.option-btn.correct { background: #e8f5e9; border-color: #43a047; color: #1b5e20; }
+.option-btn { background: #fff8f0; border: 2px solid #ffd0a0; border-radius: 10px; padding: 11px 16px; font-size: 0.94rem; font-weight: 500; color: #444; cursor: pointer; text-align: left; transition: all 0.17s; width: 100%; }
+.option-btn:hover:not(:disabled) { background: #ffe0b2; border-color: #f5a623; transform: translateX(3px); }
+.option-btn.correct { background: #e8f5e9; border-color: #43a047; color: #1b5e20; font-weight: 700; }
 .option-btn.wrong   { background: #fce4ec; border-color: #e53935; color: #b71c1c; }
 .option-btn:disabled { cursor: default; }
-
-.feedback {
-  margin-top: 12px; padding: 10px 14px; border-radius: 8px;
-  font-size: 0.9rem; font-weight: 600; display: none;
-  line-height: 1.4;
-}
+.feedback { margin-top: 12px; padding: 10px 14px; border-radius: 8px; font-size: 0.88rem; font-weight: 600; display: none; line-height: 1.4; }
 .feedback.correct { background: #e8f5e9; color: #2e7d32; display: block; }
 .feedback.wrong   { background: #fce4ec; color: #c62828; display: block; }
-
 .nav-row { display: flex; justify-content: flex-end; margin-top: 14px; }
-.next-btn {
-  background: linear-gradient(135deg, #43e97b, #38f9d7);
-  color: #1b5e20; border: none; border-radius: 10px;
-  padding: 11px 26px; font-size: 0.96rem; font-weight: 700;
-  cursor: pointer; display: none; transition: opacity 0.2s;
-}
-.next-btn:hover { opacity: 0.88; }
+.next-btn { background: linear-gradient(135deg, #43e97b, #38f9d7); color: #1b5e20; border: none; border-radius: 10px; padding: 11px 26px; font-size: 0.94rem; font-weight: 700; cursor: pointer; display: none; }
 .next-btn.show { display: inline-block; }
 
-/* ── END SCREEN ── */
-#endScreen {
-  text-align: center;
-  background: white;
-  border-radius: 20px;
-  padding: 40px 24px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
-#endScreen .trophy { font-size: 4rem; margin-bottom: 12px; }
-#endScreen h2 { font-size: 1.5rem; font-weight: 800; color: #e65100; margin-bottom: 8px; }
-.score-big { font-size: 2.8rem; font-weight: 900; color: #f5a623; }
-.score-pct { font-size: 1rem; color: #999; margin-bottom: 18px; }
-.end-message { font-size: 1rem; color: #555; margin-bottom: 26px; line-height: 1.6; }
-.end-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-.btn-retry {
-  background: linear-gradient(135deg, #f5a623, #f76b1c);
-  color: white; border: none; border-radius: 12px;
-  padding: 13px 30px; font-size: 1rem; font-weight: 700;
-  cursor: pointer; box-shadow: 0 4px 12px rgba(247,107,28,0.3);
-}
-.btn-menu {
-  background: white; color: #5b8dee;
-  border: 2px solid #5b8dee; border-radius: 12px;
-  padding: 13px 30px; font-size: 1rem; font-weight: 700; cursor: pointer;
-}
+/* END SCREEN */
+#endScreen { background: white; border-radius: 20px; padding: 32px 22px 36px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); text-align: center; }
+
+/* Stars */
+.stars-row { display: flex; justify-content: center; gap: 6px; margin-bottom: 14px; min-height: 40px; }
+.star { font-size: 1.9rem; opacity: 0; transform: scale(0.3) rotate(-30deg); transition: opacity 0.35s ease, transform 0.35s ease; }
+.star.pop { opacity: 1; transform: scale(1) rotate(0deg); }
+
+.trophy-icon { font-size: 3.6rem; display: block; margin-bottom: 8px; }
+.end-title { font-size: 1.5rem; font-weight: 900; color: #e65100; margin-bottom: 4px; }
+.end-subtitle { font-size: 0.92rem; color: #888; margin-bottom: 20px; }
+
+/* Score pills */
+.score-pills { display: flex; justify-content: center; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+.pill { display: flex; flex-direction: column; align-items: center; background: #f9fafb; border-radius: 12px; padding: 10px 14px; min-width: 66px; }
+.pill .pv { font-size: 1.35rem; font-weight: 900; }
+.pill .pl { font-size: 0.63rem; font-weight: 700; color: #aaa; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+
+/* End buttons */
+.end-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+.btn-retry { background: linear-gradient(135deg, #f5a623, #f76b1c); color: white; border: none; border-radius: 12px; padding: 13px 28px; font-size: 0.95rem; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(247,107,28,0.3); }
+.btn-menu  { background: white; color: #5b8dee; border: 2px solid #5b8dee; border-radius: 12px; padding: 13px 28px; font-size: 0.95rem; font-weight: 700; cursor: pointer; }
 .btn-menu:hover { background: #eaf3ff; }
 
-@media (max-width: 480px) {
-  .unit-cards { grid-template-columns: 1fr; }
-  .unit-card-full { grid-column: auto; }
-  .menu-header h1 { font-size: 1.5rem; }
-  .question-text { font-size: 0.95rem; }
-}
+/* Review box */
+.review-box { background: #f9fafb; border: 1px solid #d1d5db; border-radius: 14px; padding: 18px 18px 16px; text-align: left; margin-top: 4px; }
+.review-badge { display: inline-block; background: #1f2937; color: white; font-size: 0.65rem; font-weight: 800; padding: 3px 9px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 10px; }
+.review-heading { font-size: 1rem; font-weight: 800; color: #111; margin-bottom: 8px; }
+.review-body { font-size: 0.82rem; color: #4b5563; line-height: 1.55; margin-bottom: 14px; }
+.review-btn { display: block; background: #1f2937; color: white; text-decoration: none; font-size: 0.88rem; font-weight: 700; padding: 11px 20px; border-radius: 9px; text-align: center; transition: background 0.2s; }
+.review-btn:hover { background: #374151; }
+
+/* Low score */
+.low-score-card { background: #fff8f0; border: 2px solid #ffd09b; border-radius: 16px; padding: 26px 18px; text-align: center; margin-bottom: 20px; }
+.low-score-card .ls-emoji { font-size: 3rem; display: block; margin-bottom: 10px; }
+.low-score-card h2 { font-size: 1.3rem; font-weight: 900; color: #e65100; margin-bottom: 8px; }
+.low-score-card p { font-size: 0.88rem; color: #a04000; line-height: 1.5; margin-bottom: 20px; }
+.low-pills { display: flex; justify-content: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+.low-pill { display: flex; flex-direction: column; align-items: center; background: white; border-radius: 12px; padding: 10px 14px; min-width: 66px; border: 1px solid #e5e7eb; }
+.low-pill .pv { font-size: 1.35rem; font-weight: 900; }
+.low-pill .pl { font-size: 0.63rem; font-weight: 700; color: #aaa; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+
+@media (max-width: 480px) { .container { max-width: 100%; } .unit-cards { grid-template-columns: 1fr; } .unit-card-full { grid-column: auto; } }
 </style>
 </head>
 <body>
 <div class="container">
 
-<!-- ══════════════ MENU ══════════════ -->
+<!-- MENU -->
 <div id="menuScreen">
   <div class="menu-header">
     <div class="school-icon">🗺️</div>
@@ -228,11 +119,7 @@ body {
     <p>Order of Adjectives Workbook Quiz</p>
     <p style="color:#aaa;font-size:0.85rem;margin-top:2px;">Select a unit to begin</p>
   </div>
-
-  <div class="unit-label">
-    <span>📋</span> SELECT QUIZ UNIT
-  </div>
-
+  <div class="unit-label"><span>📋</span> SELECT QUIZ UNIT</div>
   <div class="unit-cards">
     <div class="unit-card green" onclick="startQuiz('A')">
       <div class="icon">🌱</div>
@@ -261,752 +148,243 @@ body {
   </div>
 </div>
 
-<!-- ══════════════ QUIZ ══════════════ -->
+<!-- QUIZ -->
 <div id="quizScreen">
   <div class="quiz-header">
     <div style="font-size:1.6rem;margin-bottom:5px;">📚 ✏️</div>
     <h2>Order of Adjectives Quiz</h2>
     <p>Grades 3–4 · Adjective Explorer!</p>
   </div>
-
   <div class="top-bar">
-    <button class="exit-btn" onclick="exitToMenu()">⬅️ Exit to Menu</button>
+    <button class="exit-btn" onclick="exitToMenu()">⬅️ Exit</button>
     <div class="progress-wrap">
-      <div class="progress-bar-bg">
-        <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
-      </div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressBar" style="width:0%"></div></div>
       <div class="progress-label" id="progressLabel">Question 1 of 10</div>
     </div>
   </div>
   <div class="score-display" id="scoreDisplay">⭐ Score: 0</div>
-
   <div id="quizArea"></div>
 </div>
 
-<!-- ══════════════ END ══════════════ -->
-<div id="endScreen">
-  <div class="trophy" id="trophyEmoji">🏆</div>
-  <h2 id="endTitle">Quiz Complete!</h2>
-  <div class="score-big" id="finalScore"></div>
-  <div class="score-pct" id="finalPct"></div>
-  <div class="end-message" id="finalMsg"></div>
-  <div class="end-buttons">
-    <button class="btn-retry" onclick="retryQuiz()">🔄 Try Again</button>
-    <button class="btn-menu" onclick="goMenu()">🏠 Back to Menu</button>
-  </div>
-</div>
+<!-- END -->
+<div id="endScreen"></div>
 
-</div><!-- /container -->
+</div>
 
 <script>
 const BANK_A = [
-  {
-    section: "🌱 What is an Adjective?",
-    q: "Which of these is an adjective?",
-    options: ["run", "fluffy", "quickly", "jump"],
-    answer: 1,
-    feedback: "Fluffy is an adjective — it describes what something is like. 'run' and 'jump' are verbs; 'quickly' is an adverb."
-  },
-  {
-    section: "🌱 What is an Adjective?",
-    q: "What does an adjective help us do?",
-    options: [
-      "Name something",
-      "Show an action",
-      "Picture things clearly in our minds",
-      "Connect two sentences"
-    ],
-    answer: 2,
-    feedback: "Adjectives help us picture things clearly — they tell us size, colour, feel, taste and more!"
-  },
-  {
-    section: "🌱 What is an Adjective?",
-    q: "What did we add to change 'a dog' into 'a fluffy, golden dog'?",
-    options: ["Two nouns", "Two verbs", "Two adjectives that describe the dog", "Two adverbs"],
-    answer: 2,
-    feedback: "'fluffy' and 'golden' are both adjectives — they make the noun 'dog' much more vivid and specific!"
-  },
-  {
-    section: "🌱 What is an Adjective?",
-    q: "Which word is NOT an adjective?",
-    options: ["golden", "tall", "quickly", "bright"],
-    answer: 2,
-    feedback: "'quickly' is an adverb — it describes HOW something is done. The others are all adjectives describing nouns."
-  },
-  {
-    section: "🌱 What is an Adjective?",
-    q: "Nouns are the ______ words. Adjectives are the ______ words.",
-    options: [
-      "describing / naming",
-      "naming / describing",
-      "action / describing",
-      "describing / action"
-    ],
-    answer: 1,
-    feedback: "Nouns NAME things. Adjectives DESCRIBE them. They always work as a team!"
-  },
-  {
-    section: "🌱 What is an Adjective?",
-    q: "Which sentence has TWO adjectives?",
-    options: [
-      "The dog runs fast.",
-      "She found a beautiful blue shell.",
-      "He went to school.",
-      "They played in the park."
-    ],
-    answer: 1,
-    feedback: "'beautiful' and 'blue' are both adjectives describing the shell — two adjectives before the noun!"
-  },
-  {
-    section: "🌱 What is an Adjective?",
-    q: "When we use MORE than one adjective before a noun, what matters?",
-    options: [
-      "The length of each adjective",
-      "The colour of each adjective",
-      "The ORDER of the adjectives",
-      "How many letters each has"
-    ],
-    answer: 2,
-    feedback: "ORDER matters! 'a lovely big red apple' sounds right, but 'a red big lovely apple' sounds wrong — even though all the words are correct!"
-  },
-  {
-    section: "🌱 What is an Adjective?",
-    q: "Which sentence uses descriptive words to tell us about the noun?",
-    options: [
-      "He opened the door.",
-      "She wore a shiny gold ring.",
-      "They walked to the park.",
-      "Cats can jump high."
-    ],
-    answer: 1,
-    feedback: "'shiny' and 'gold' are adjectives describing the noun 'ring'!"
-  },
-  {
-    section: "🌱 What is an Adjective?",
-    q: "Find the adjective in this sentence: 'The hungry boy ate his lunch.'",
-    options: ["boy", "ate", "hungry", "lunch"],
-    answer: 2,
-    feedback: "'hungry' is the adjective because it describes the boy!"
-  },
-  {
-    section: "🌱 What is an Adjective?",
-    q: "In the phrase 'a shady tree', which word is the adjective?",
-    options: ["a", "shady", "tree"],
-    answer: 1,
-    feedback: "'shady' is the adjective because it describes what the tree is like!"
-  }
+  { section:"🌱 What is an Adjective?", q:"Which of these is an adjective?", options:["run","fluffy","quickly","jump"], answer:1, feedback:"Fluffy is an adjective — it describes what something is like. 'run' and 'jump' are verbs; 'quickly' is an adverb." },
+  { section:"🌱 What is an Adjective?", q:"What does an adjective help us do?", options:["Name something","Show an action","Picture things clearly in our minds","Connect two sentences"], answer:2, feedback:"Adjectives help us picture things clearly — they tell us size, colour, feel, taste and more!" },
+  { section:"🌱 What is an Adjective?", q:"What did we add to change 'a dog' into 'a fluffy, golden dog'?", options:["Two nouns","Two verbs","Two adjectives that describe the dog","Two adverbs"], answer:2, feedback:"'fluffy' and 'golden' are both adjectives — they make the noun 'dog' much more vivid and specific!" },
+  { section:"🌱 What is an Adjective?", q:"Which word is NOT an adjective?", options:["golden","tall","quickly","bright"], answer:2, feedback:"'quickly' is an adverb — it describes HOW something is done. The others are all adjectives describing nouns." },
+  { section:"🌱 What is an Adjective?", q:"Nouns are the ______ words. Adjectives are the ______ words.", options:["describing / naming","naming / describing","action / describing","describing / action"], answer:1, feedback:"Nouns NAME things. Adjectives DESCRIBE them. They always work as a team!" },
+  { section:"🌱 What is an Adjective?", q:"Which sentence has TWO adjectives?", options:["The dog runs fast.","She found a beautiful blue shell.","He went to school.","They played in the park."], answer:1, feedback:"'beautiful' and 'blue' are both adjectives describing the shell — two adjectives before the noun!" },
+  { section:"🌱 What is an Adjective?", q:"When we use MORE than one adjective before a noun, what matters?", options:["The length of each adjective","The colour of each adjective","The ORDER of the adjectives","How many letters each has"], answer:2, feedback:"ORDER matters! 'a lovely big red apple' sounds right, but 'a red big lovely apple' sounds wrong — even though all the words are correct!" },
+  { section:"🌱 What is an Adjective?", q:"Which sentence uses descriptive words to tell us about the noun?", options:["He opened the door.","She wore a shiny gold ring.","They walked to the park.","Cats can jump high."], answer:1, feedback:"'shiny' and 'gold' are adjectives describing the noun 'ring'!" },
+  { section:"🌱 What is an Adjective?", q:"Find the adjective in this sentence: 'The hungry boy ate his lunch.'", options:["boy","ate","hungry","lunch"], answer:2, feedback:"'hungry' is the adjective because it describes the boy!" },
+  { section:"🌱 What is an Adjective?", q:"In the phrase 'a shady tree', which word is the adjective?", options:["a","shady","tree"], answer:1, feedback:"'shady' is the adjective because it describes what the tree is like!" }
 ];
 
 const BANK_B = [
-  {
-    section: "🎂 Three-Position Rule",
-    q: "The Three-Position Rule puts adjectives in this order:",
-    options: [
-      "Colour → Size → Opinion",
-      "Size → Colour → Opinion",
-      "Opinion → Size → Colour",
-      "Opinion → Colour → Size"
-    ],
-    answer: 2,
-    feedback: "Opinion comes 1st, Size comes 2nd, Colour comes 3rd — then the noun! Opinion → Size → Colour → Noun."
-  },
-  {
-    section: "🎂 Three-Position Rule",
-    q: "Which of these is an OPINION adjective?",
-    options: ["big", "red", "lovely", "long"],
-    answer: 2,
-    feedback: "'lovely' is an opinion — it tells you what someone THINKS or FEELS about something. Others are size or colour."
-  },
-  {
-    section: "🎂 Three-Position Rule",
-    q: "Which of these is a SIZE adjective?",
-    options: ["gorgeous", "golden", "tiny", "horrible"],
-    answer: 2,
-    feedback: "'tiny' describes HOW BIG something is — that's a size adjective!"
-  },
-  {
-    section: "🎂 Three-Position Rule",
-    q: "Which of these is a COLOUR adjective?",
-    options: ["ugly", "narrow", "tall", "silver"],
-    answer: 3,
-    feedback: "'silver' describes what colour something is. 'ugly' is opinion, 'narrow' and 'tall' are size."
-  },
-  {
-    section: "🎂 Three-Position Rule",
-    q: "Which phrase is in the CORRECT order?",
-    options: [
-      "a red big lovely apple",
-      "a lovely big red apple",
-      "a big lovely red apple",
-      "a red lovely big apple"
-    ],
-    answer: 1,
-    feedback: "Opinion (lovely) → Size (big) → Colour (red) → Noun. 'a lovely big red apple' is correct!"
-  },
-  {
-    section: "🎂 Three-Position Rule",
-    q: "Which phrase is in the CORRECT order?",
-    options: [
-      "a tiny lovely bird",
-      "a bird tiny lovely",
-      "a lovely tiny bird",
-      "a lovely bird tiny"
-    ],
-    answer: 2,
-    feedback: "Opinion (lovely) → Size (tiny) → Noun. 'a lovely tiny bird' is correct!"
-  },
-  {
-    section: "🎂 Three-Position Rule",
-    q: "Which phrase is in the CORRECT order?",
-    options: [
-      "a blue long scarf",
-      "a long blue scarf",
-      "a lovely scarf blue",
-      "a scarf long blue"
-    ],
-    answer: 1,
-    feedback: "Size (long) → Colour (blue) → Noun. 'a long blue scarf' is correct. Colour always sits closest to the noun!"
-  },
-  {
-    section: "🎂 Three-Position Rule",
-    q: "Colour always sits ______ to the noun.",
-    options: ["furthest", "closest", "before the opinion", "after the noun"],
-    answer: 1,
-    feedback: "Colour is ALWAYS closest to the noun — no matter how many adjectives you use!"
-  },
-  {
-    section: "🎂 Three-Position Rule",
-    q: "Put these in the correct order: golden / tiny / star",
-    options: [
-      "a golden tiny star",
-      "a star golden tiny",
-      "a tiny golden star",
-      "a golden star tiny"
-    ],
-    answer: 2,
-    feedback: "Size (tiny) → Colour (golden) → Noun. 'a tiny golden star' is correct!"
-  },
-  {
-    section: "🎂 Three-Position Rule",
-    q: "Put these in the correct order: lovely / big / golden (dog)",
-    options: [
-      "a golden big lovely dog",
-      "a big lovely golden dog",
-      "a lovely golden big dog",
-      "a lovely big golden dog"
-    ],
-    answer: 3,
-    feedback: "Opinion (lovely) → Size (big) → Colour (golden). 'a lovely big golden dog' matches the rules!"
-  },
-  {
-    section: "🎂 Three-Position Rule",
-    q: "Which sentence is correct?",
-    options: [
-      "They found a blue beautiful shell on the beach.",
-      "They found a beautiful blue shell on the beach.",
-      "They found a shell beautiful blue on the beach.",
-      "They found a blue shell beautiful on the beach."
-    ],
-    answer: 1,
-    feedback: "Opinion (beautiful) → Colour (blue) → Noun. 'a beautiful blue shell' is correct!"
-  },
-  {
-    section: "🎂 Three-Position Rule",
-    q: "Which sentence is correct?",
-    options: [
-      "We saw a golden big lovely dog in the park.",
-      "We saw a big golden lovely dog in the park.",
-      "We saw a lovely big golden dog in the park.",
-      "We saw a lovely golden big dog in the park.",
-      "We saw a lovely big golden dog in the park."
-    ],
-    answer: 2,
-    feedback: "Opinion (lovely) → Size (big) → Colour (golden). 'We saw a lovely big golden dog in the park' is correct!"
-  },
-  {
-    section: "🎂 Three-Position Rule",
-    q: "Find the mistake: 'She wore a red lovely dress to the party.'",
-    options: [
-      "No mistake — it is correct.",
-      "The adjectives are in the wrong order — should be 'a lovely red dress'.",
-      "'dress' should come before the adjectives.",
-      "'lovely' should be removed."
-    ],
-    answer: 1,
-    feedback: "Opinion (lovely) must come BEFORE Colour (red). Correct layout: 'She wore a lovely red dress to the party.'"
-  },
-  {
-    section: "🎂 Three-Position Rule",
-    q: "Find the mistake: 'He found a blue tiny shell on the beach.'",
-    options: [
-      "No mistake — it is correct.",
-      "'shell' should come first.",
-      "The adjectives are in the wrong order — should be 'a tiny blue shell'.",
-      "'blue' should be removed."
-    ],
-    answer: 2,
-    feedback: "Size (tiny) must come BEFORE Colour (blue). Correct layout: 'He found a tiny blue shell on the beach.'"
-  }
+  { section:"🎂 Three-Position Rule", q:"The Three-Position Rule puts adjectives in this order:", options:["Colour → Size → Opinion","Size → Colour → Opinion","Opinion → Size → Colour","Opinion → Colour → Size"], answer:2, feedback:"Opinion comes 1st, Size comes 2nd, Colour comes 3rd — then the noun! Opinion → Size → Colour → Noun." },
+  { section:"🎂 Three-Position Rule", q:"Which of these is an OPINION adjective?", options:["big","red","lovely","long"], answer:2, feedback:"'lovely' is an opinion — it tells you what someone THINKS or FEELS about something. Others are size or colour." },
+  { section:"🎂 Three-Position Rule", q:"Which of these is a SIZE adjective?", options:["gorgeous","golden","tiny","horrible"], answer:2, feedback:"'tiny' describes HOW BIG something is — that's a size adjective!" },
+  { section:"🎂 Three-Position Rule", q:"Which of these is a COLOUR adjective?", options:["ugly","narrow","tall","silver"], answer:3, feedback:"'silver' describes what colour something is. 'ugly' is opinion, 'narrow' and 'tall' are size." },
+  { section:"🎂 Three-Position Rule", q:"Which phrase is in the CORRECT order?", options:["a red big lovely apple","a lovely big red apple","a big lovely red apple","a red lovely big apple"], answer:1, feedback:"Opinion (lovely) → Size (big) → Colour (red) → Noun. 'a lovely big red apple' is correct!" },
+  { section:"🎂 Three-Position Rule", q:"Which phrase is in the CORRECT order?", options:["a tiny lovely bird","a bird tiny lovely","a lovely tiny bird","a lovely bird tiny"], answer:2, feedback:"Opinion (lovely) → Size (tiny) → Noun. 'a lovely tiny bird' is correct!" },
+  { section:"🎂 Three-Position Rule", q:"Which phrase is in the CORRECT order?", options:["a blue long scarf","a long blue scarf","a lovely scarf blue","a scarf long blue"], answer:1, feedback:"Size (long) → Colour (blue) → Noun. 'a long blue scarf' is correct. Colour always sits closest to the noun!" },
+  { section:"🎂 Three-Position Rule", q:"Colour always sits ______ to the noun.", options:["furthest","closest","before the opinion","after the noun"], answer:1, feedback:"Colour is ALWAYS closest to the noun — no matter how many adjectives you use!" },
+  { section:"🎂 Three-Position Rule", q:"Put these in the correct order: golden / tiny / star", options:["a golden tiny star","a star golden tiny","a tiny golden star","a golden star tiny"], answer:2, feedback:"Size (tiny) → Colour (golden) → Noun. 'a tiny golden star' is correct!" },
+  { section:"🎂 Three-Position Rule", q:"Put these in the correct order: lovely / big / golden (dog)", options:["a golden big lovely dog","a big lovely golden dog","a lovely golden big dog","a lovely big golden dog"], answer:3, feedback:"Opinion (lovely) → Size (big) → Colour (golden). 'a lovely big golden dog' matches the rules!" },
+  { section:"🎂 Three-Position Rule", q:"Which sentence is correct?", options:["They found a blue beautiful shell on the beach.","They found a beautiful blue shell on the beach.","They found a shell beautiful blue on the beach.","They found a blue shell beautiful on the beach."], answer:1, feedback:"Opinion (beautiful) → Colour (blue) → Noun. 'a beautiful blue shell' is correct!" },
+  { section:"🎂 Three-Position Rule", q:"Which sentence is correct?", options:["We saw a golden big lovely dog in the park.","We saw a big golden lovely dog in the park.","We saw a lovely big golden dog in the park.","We saw a lovely golden big dog in the park."], answer:2, feedback:"Opinion (lovely) → Size (big) → Colour (golden). 'We saw a lovely big golden dog in the park' is correct!" },
+  { section:"🎂 Three-Position Rule", q:"Find the mistake: 'She wore a red lovely dress to the party.'", options:["No mistake — it is correct.","The adjectives are in the wrong order — should be 'a lovely red dress'.","'dress' should come before the adjectives.","'lovely' should be removed."], answer:1, feedback:"Opinion (lovely) must come BEFORE Colour (red). Correct layout: 'She wore a lovely red dress to the party.'" },
+  { section:"🎂 Three-Position Rule", q:"Find the mistake: 'He found a blue tiny shell on the beach.'", options:["No mistake — it is correct.","'shell' should come first.","The adjectives are in the wrong order — should be 'a tiny blue shell'.","'blue' should be removed."], answer:2, feedback:"Size (tiny) must come BEFORE Colour (blue). Correct layout: 'He found a tiny blue shell on the beach.'" }
 ];
 
 const BANK_C = [
-  {
-    section: "🏰 Four-Position Rule",
-    q: "The Four-Position Rule adds a new category. What is it?",
-    options: ["Material", "Shape", "Age", "Taste"],
-    answer: 2,
-    feedback: "The Four-Position Rule adds AGE — words like old, new, young, ancient, brand-new, modern."
-  },
-  {
-    section: "🏰 Four-Position Rule",
-    q: "Age sits between which two positions?",
-    options: [
-      "Opinion and Size",
-      "Size and Colour",
-      "Colour and the Noun",
-      "Before Opinion"
-    ],
-    answer: 1,
-    feedback: "Age sits between Size and Colour: Opinion → Size → Age → Colour → Noun."
-  },
-  {
-    section: "🏰 Four-Position Rule",
-    q: "Which word is an AGE adjective?",
-    options: ["golden", "tiny", "ancient", "horrible"],
-    answer: 2,
-    feedback: "'ancient' describes HOW OLD something is — that's an age adjective!"
-  },
-  {
-    section: "🏰 Four-Position Rule",
-    q: "The correct Four-Position order is …",
-    options: [
-      "Opinion → Colour → Age → Size",
-      "Size → Age → Opinion → Colour",
-      "Opinion → Size → Age → Colour",
-      "Age → Opinion → Size → Colour"
-    ],
-    answer: 2,
-    feedback: "Opinion → Size → Age → Colour → Noun. Always remember: Colour sits closest to the noun!"
-  },
-  {
-    section: "🏰 Four-Position Rule",
-    q: "Which phrase is in the CORRECT order?",
-    options: [
-      "a big new red bicycle",
-      "a red new big bicycle",
-      "a new red big bicycle",
-      "a new big red bicycle"
-    ],
-    answer: 0,
-    feedback: "Size (big) → Age (new) → Colour (red). 'a big new red bicycle' is correct!"
-  },
-  {
-    section: "🏰 Four-Position Rule",
-    q: "Which phrase is in the CORRECT order?",
-    options: [
-      "a blue tiny old shell",
-      "a tiny old blue shell",
-      "an old tiny blue shell",
-      "a blue old tiny shell"
-    ],
-    answer: 1,
-    feedback: "Size (tiny) → Age (old) → Colour (blue). 'a tiny old blue shell' is correct!"
-  },
-  {
-    section: "🏰 Four-Position Rule",
-    q: "Which phrase is in the CORRECT order?",
-    options: [
-      "a lovely ancient white cottage",
-      "a white ancient lovely cottage",
-      "an ancient lovely white cottage",
-      "a lovely white ancient cottage"
-    ],
-    answer: 0,
-    feedback: "Opinion (lovely) → Age (ancient) → Colour (white). 'a lovely ancient white cottage' is correct!"
-  },
-  {
-    section: "🏰 Four-Position Rule",
-    q: "Which phrase is in the CORRECT order?",
-    options: [
-      "an old big gorgeous golden dog",
-      "a big gorgeous golden old dog",
-      "a gorgeous big old golden dog",
-      "a golden old big gorgeous dog"
-    ],
-    answer: 2,
-    feedback: "Opinion (gorgeous) → Size (big) → Age (old) → Colour (golden). 'a gorgeous big old golden dog' is correct!"
-  },
-  {
-    section: "🏰 Four-Position Rule",
-    q: "Put these in the correct order: old / black / cat",
-    options: [
-      "a black old cat",
-      "a cat old black",
-      "an old black cat",
-      "a old black cat"
-    ],
-    answer: 2,
-    feedback: "Age (old) → Colour (black) → Noun. 'an old black cat' is correct — and remember to use 'an' before vowel sounds!"
-  },
-  {
-    section: "🏰 Four-Position Rule",
-    q: "When does 'a' change to 'an'?",
-    options: [
-      "Before a colour adjective",
-      "Before an adjective that starts with a vowel sound",
-      "Before a size adjective",
-      "Before an opinion adjective"
-    ],
-    answer: 1,
-    feedback: "Use 'an' when the next word starts with a VOWEL SOUND — like 'an old cat' or 'an ancient ring'."
-  },
-  {
-    section: "🏰 Four-Position Rule",
-    q: "Which sentence is correct?",
-    options: [
-      "She lived in a lovely big old white cottage by the sea.",
-      "She lived in a white old big lovely cottage by the sea.",
-      "She lived in an old lovely white big cottage by the sea.",
-      "She lived in a big white lovely old cottage by the sea."
-    ],
-    answer: 0,
-    feedback: "Opinion (lovely) → Size (big) → Age (old) → Colour (white). 'a lovely big old white cottage' perfectly balances standard word layout rules."
-  },
-  {
-    section: "🏰 Four-Position Rule",
-    q: "Which sentence is correct?",
-    options: [
-      "They found a horrible big old spider under the bed.",
-      "They found a big horrible old spider under the bed.",
-      "They found an old horrible big spider under the bed.",
-      "They found a horrible old big spider under the bed."
-    ],
-    answer: 0,
-    feedback: "Opinion (horrible) → Size (big) → Age (old). 'a horrible big old spider' follows correct patterns."
-  },
-  {
-    section: "🏰 Four-Position Rule",
-    q: "Put these in the correct order: lovely / new / silver / bicycle",
-    options: [
-      "a silver lovely new bicycle",
-      "a new lovely silver bicycle",
-      "a lovely silver new bicycle",
-      "a lovely new silver bicycle"
-    ],
-    answer: 3,
-    feedback: "Opinion (lovely) → Age (new) → Colour (silver). 'a lovely new silver bicycle' is correct!"
-  },
-  {
-    section: "🏰 Four-Position Rule",
-    q: "Which is correct? Size (big) + Age (old) + Colour (brown) + Noun (bear)",
-    options: [
-      "a big old brown bear",
-      "a brown old big bear",
-      "an old big brown bear",
-      "a big brown old bear"
-    ],
-    answer: 0,
-    feedback: "Size (big) → Age (old) → Colour (brown). 'a big old brown bear' is correct!"
-  }
+  { section:"🏰 Four-Position Rule", q:"The Four-Position Rule adds a new category. What is it?", options:["Material","Shape","Age","Taste"], answer:2, feedback:"The Four-Position Rule adds AGE — words like old, new, young, ancient, brand-new, modern." },
+  { section:"🏰 Four-Position Rule", q:"Age sits between which two positions?", options:["Opinion and Size","Size and Colour","Colour and the Noun","Before Opinion"], answer:1, feedback:"Age sits between Size and Colour: Opinion → Size → Age → Colour → Noun." },
+  { section:"🏰 Four-Position Rule", q:"Which word is an AGE adjective?", options:["golden","tiny","ancient","horrible"], answer:2, feedback:"'ancient' describes HOW OLD something is — that's an age adjective!" },
+  { section:"🏰 Four-Position Rule", q:"The correct Four-Position order is …", options:["Opinion → Colour → Age → Size","Size → Age → Opinion → Colour","Opinion → Size → Age → Colour","Age → Opinion → Size → Colour"], answer:2, feedback:"Opinion → Size → Age → Colour → Noun. Always remember: Colour sits closest to the noun!" },
+  { section:"🏰 Four-Position Rule", q:"Which phrase is in the CORRECT order?", options:["a big new red bicycle","a red new big bicycle","a new red big bicycle","a new big red bicycle"], answer:0, feedback:"Size (big) → Age (new) → Colour (red). 'a big new red bicycle' is correct!" },
+  { section:"🏰 Four-Position Rule", q:"Which phrase is in the CORRECT order?", options:["a blue tiny old shell","a tiny old blue shell","an old tiny blue shell","a blue old tiny shell"], answer:1, feedback:"Size (tiny) → Age (old) → Colour (blue). 'a tiny old blue shell' is correct!" },
+  { section:"🏰 Four-Position Rule", q:"Which phrase is in the CORRECT order?", options:["a lovely ancient white cottage","a white ancient lovely cottage","an ancient lovely white cottage","a lovely white ancient cottage"], answer:0, feedback:"Opinion (lovely) → Age (ancient) → Colour (white). 'a lovely ancient white cottage' is correct!" },
+  { section:"🏰 Four-Position Rule", q:"Which phrase is in the CORRECT order?", options:["an old big gorgeous golden dog","a big gorgeous golden old dog","a gorgeous big old golden dog","a golden old big gorgeous dog"], answer:2, feedback:"Opinion (gorgeous) → Size (big) → Age (old) → Colour (golden). 'a gorgeous big old golden dog' is correct!" },
+  { section:"🏰 Four-Position Rule", q:"Put these in the correct order: old / black / cat", options:["a black old cat","a cat old black","an old black cat","a old black cat"], answer:2, feedback:"Age (old) → Colour (black) → Noun. 'an old black cat' is correct — use 'an' before vowel sounds!" },
+  { section:"🏰 Four-Position Rule", q:"When does 'a' change to 'an'?", options:["Before a colour adjective","Before an adjective that starts with a vowel sound","Before a size adjective","Before an opinion adjective"], answer:1, feedback:"Use 'an' when the next word starts with a VOWEL SOUND — like 'an old cat' or 'an ancient ring'." },
+  { section:"🏰 Four-Position Rule", q:"Which sentence is correct?", options:["She lived in a lovely big old white cottage by the sea.","She lived in a white old big lovely cottage by the sea.","She lived in an old lovely white big cottage by the sea.","She lived in a big white lovely old cottage by the sea."], answer:0, feedback:"Opinion (lovely) → Size (big) → Age (old) → Colour (white). 'a lovely big old white cottage' is correct!" },
+  { section:"🏰 Four-Position Rule", q:"Which sentence is correct?", options:["They found a horrible big old spider under the bed.","They found a big horrible old spider under the bed.","They found an old horrible big spider under the bed.","They found a horrible old big spider under the bed."], answer:0, feedback:"Opinion (horrible) → Size (big) → Age (old). 'a horrible big old spider' is correct!" },
+  { section:"🏰 Four-Position Rule", q:"Put these in the correct order: lovely / new / silver / bicycle", options:["a silver lovely new bicycle","a new lovely silver bicycle","a lovely silver new bicycle","a lovely new silver bicycle"], answer:3, feedback:"Opinion (lovely) → Age (new) → Colour (silver). 'a lovely new silver bicycle' is correct!" },
+  { section:"🏰 Four-Position Rule", q:"Which is correct? Size (big) + Age (old) + Colour (brown) + Noun (bear)", options:["a big old brown bear","a brown old big bear","an old big brown bear","a big brown old bear"], answer:0, feedback:"Size (big) → Age (old) → Colour (brown). 'a big old brown bear' is correct!" }
 ];
 
 const BANK_D = [
-  {
-    section: "⚡ Adjective Challenge",
-    q: "Find the mistake: 'She wore a cream lovely long modern dress.'",
-    options: [
-      "No mistake.",
-      "Correct order: a lovely long modern cream dress.",
-      "Correct order: a long lovely modern cream dress.",
-      "Correct order: a modern lovely long cream dress."
-    ],
-    answer: 1,
-    feedback: "Opinion (lovely) → Size (long) → Age (modern) → Colour (cream). Correct sequence: 'a lovely long modern cream dress'."
-  },
-  {
-    section: "⚡ Adjective Challenge",
-    q: "Find the mistake: 'They found a dark ancient deep well in the courtyard.'",
-    options: [
-      "No mistake.",
-      "Correct order: a deep ancient dark well.",
-      "Correct order: an ancient dark deep well.",
-      "Correct order: a dark deep ancient well."
-    ],
-    answer: 1,
-    feedback: "Size (deep) → Age (ancient) → Colour (dark). Correct sequence: 'They found a deep ancient dark well in the courtyard.'"
-  },
-  {
-    section: "⚡ Adjective Challenge",
-    q: "Find the mistake: 'He rode a white beautiful tall young stallion through the valley.'",
-    options: [
-      "No mistake.",
-      "Correct order: a young beautiful tall white stallion.",
-      "Correct order: a beautiful tall young white stallion.",
-      "Correct order: a tall beautiful young white stallion."
-    ],
-    answer: 2,
-    feedback: "Opinion (beautiful) → Size (tall) → Age (young) → Colour (white). Correct sequence: 'a beautiful tall young white stallion'."
-  },
-  {
-    section: "⚡ Adjective Challenge",
-    q: "Find the mistake: 'The children spotted a brown young tiny fox in the meadow.'",
-    options: [
-      "No mistake.",
-      "Correct order: a tiny young brown fox.",
-      "Correct order: a young tiny brown fox.",
-      "Correct order: a brown tiny young fox."
-    ],
-    answer: 1,
-    feedback: "Size (tiny) → Age (young) → Colour (brown). Correct sequence: 'The children spotted a tiny young brown fox in the meadow.'"
-  },
-  {
-    section: "⚡ Adjective Challenge",
-    q: "Which is the correct order for: Opinion (dreadful) + Size (huge) + Colour (dark) + cave",
-    options: [
-      "a huge dreadful dark cave",
-      "a dark huge dreadful cave",
-      "a dreadful huge dark cave",
-      "a dark dreadful huge cave"
-    ],
-    answer: 2,
-    feedback: "Opinion (dreadful) → Size (huge) → Colour (dark). 'a dreadful huge dark cave' is correct!"
-  },
-  {
-    section: "⚡ Adjective Challenge",
-    q: "Which is the correct order for: Opinion (lovely) + Size (long) + Age (ancient) + Colour (scarlet) + cloak",
-    options: [
-      "a long ancient lovely scarlet cloak",
-      "an ancient lovely long scarlet cloak",
-      "a lovely long ancient scarlet cloak",
-      "a scarlet lovely long ancient cloak"
-    ],
-    answer: 2,
-    feedback: "Opinion (lovely) → Size (long) → Age (ancient) → Colour (scarlet). 'a lovely long ancient scarlet cloak' is correct!"
-  },
-  {
-    section: "⚡ Adjective Challenge",
-    q: "Which is the correct order for: Opinion (cosy) + Size (small) + Age (ancient) + Colour (white) + cottage",
-    options: [
-      "a small ancient white cosy cottage",
-      "an ancient cosy white small cottage",
-      "a cosy small ancient white cottage",
-      "a white small cosy ancient cottage"
-    ],
-    answer: 2,
-    feedback: "Opinion (cosy) → Size (small) → Age (ancient) → Colour (white). 'a cosy small ancient white cottage' is correct!"
-  },
-  {
-    section: "⚡ Adjective Challenge",
-    q: "Which is the correct order for: Opinion (gorgeous) + Size (narrow) + Age (brand-new) + Colour (copper) + bridge",
-    options: [
-      "a narrow gorgeous brand-new copper bridge",
-      "a gorgeous narrow brand-new copper bridge",
-      "a brand-new gorgeous narrow copper bridge",
-      "a copper gorgeous narrow brand-new bridge"
-    ],
-    answer: 1,
-    feedback: "Opinion (gorgeous) → Size (narrow) → Age (brand-new) → Colour (copper). 'a gorgeous narrow brand-new copper bridge' is correct!"
-  },
-  {
-    section: "⚡ Adjective Challenge",
-    q: "Which is the correct order for: Opinion (horrible) + Size (big) + Colour (dark) + hill",
-    options: [
-      "a big horrible dark hill",
-      "a dark big horrible hill",
-      "a horrible big dark hill",
-      "a horrible dark big hill"
-    ],
-    answer: 2,
-    feedback: "Opinion (horrible) → Size (big) → Colour (dark). 'a horrible big dark hill' is correct!"
-  },
-  {
-    section: "⚡ Adjective Challenge",
-    q: "Choose the correct word to fill the blank:\n'a _____ tall dark tower'",
-    options: ["ancient", "scarlet", "terrible", "huge"],
-    answer: 2,
-    feedback: "The blank sits at the very beginning position, which is reserved for an Opinion adjective like 'terrible'."
-  },
-  {
-    section: "⚡ Adjective Challenge",
-    q: "Choose the correct word for the blank:\n'a long _____ silver chain'",
-    options: ["charming", "ancient", "scarlet", "wonderful"],
-    answer: 1,
-    feedback: "The blank sits between Size and Colour, which means we need an Age adjective like 'ancient'!"
-  },
-  {
-    section: "⚡ Adjective Challenge",
-    q: "Find the mistake: 'She found a copper lovely long ancient chain in the chest.'",
-    options: [
-      "No mistake.",
-      "Correct order: a lovely long ancient copper chain.",
-      "Correct order: an ancient lovely long copper chain.",
-      "Correct order: a long lovely ancient copper chain."
-    ],
-    answer: 1,
-    feedback: "Opinion (lovely) → Size (long) → Age (ancient) → Colour (copper). Correct sequence: 'She found a lovely long ancient copper chain in the chest.'"
-  }
+  { section:"⚡ Adjective Challenge", q:"Find the mistake: 'She wore a cream lovely long modern dress.'", options:["No mistake.","Correct order: a lovely long modern cream dress.","Correct order: a long lovely modern cream dress.","Correct order: a modern lovely long cream dress."], answer:1, feedback:"Opinion (lovely) → Size (long) → Age (modern) → Colour (cream). Correct: 'a lovely long modern cream dress'." },
+  { section:"⚡ Adjective Challenge", q:"Find the mistake: 'They found a dark ancient deep well in the courtyard.'", options:["No mistake.","Correct order: a deep ancient dark well.","Correct order: an ancient dark deep well.","Correct order: a dark deep ancient well."], answer:1, feedback:"Size (deep) → Age (ancient) → Colour (dark). Correct: 'They found a deep ancient dark well in the courtyard.'" },
+  { section:"⚡ Adjective Challenge", q:"Find the mistake: 'He rode a white beautiful tall young stallion through the valley.'", options:["No mistake.","Correct order: a young beautiful tall white stallion.","Correct order: a beautiful tall young white stallion.","Correct order: a tall beautiful young white stallion."], answer:2, feedback:"Opinion (beautiful) → Size (tall) → Age (young) → Colour (white). Correct: 'a beautiful tall young white stallion'." },
+  { section:"⚡ Adjective Challenge", q:"Find the mistake: 'The children spotted a brown young tiny fox in the meadow.'", options:["No mistake.","Correct order: a tiny young brown fox.","Correct order: a young tiny brown fox.","Correct order: a brown tiny young fox."], answer:1, feedback:"Size (tiny) → Age (young) → Colour (brown). Correct: 'The children spotted a tiny young brown fox in the meadow.'" },
+  { section:"⚡ Adjective Challenge", q:"Which is the correct order for: Opinion (dreadful) + Size (huge) + Colour (dark) + cave", options:["a huge dreadful dark cave","a dark huge dreadful cave","a dreadful huge dark cave","a dark dreadful huge cave"], answer:2, feedback:"Opinion (dreadful) → Size (huge) → Colour (dark). 'a dreadful huge dark cave' is correct!" },
+  { section:"⚡ Adjective Challenge", q:"Which is the correct order for: Opinion (lovely) + Size (long) + Age (ancient) + Colour (scarlet) + cloak", options:["a long ancient lovely scarlet cloak","an ancient lovely long scarlet cloak","a lovely long ancient scarlet cloak","a scarlet lovely long ancient cloak"], answer:2, feedback:"Opinion (lovely) → Size (long) → Age (ancient) → Colour (scarlet). 'a lovely long ancient scarlet cloak' is correct!" },
+  { section:"⚡ Adjective Challenge", q:"Which is the correct order for: Opinion (cosy) + Size (small) + Age (ancient) + Colour (white) + cottage", options:["a small ancient white cosy cottage","an ancient cosy white small cottage","a cosy small ancient white cottage","a white small cosy ancient cottage"], answer:2, feedback:"Opinion (cosy) → Size (small) → Age (ancient) → Colour (white). 'a cosy small ancient white cottage' is correct!" },
+  { section:"⚡ Adjective Challenge", q:"Which is the correct order for: Opinion (gorgeous) + Size (narrow) + Age (brand-new) + Colour (copper) + bridge", options:["a narrow gorgeous brand-new copper bridge","a gorgeous narrow brand-new copper bridge","a brand-new gorgeous narrow copper bridge","a copper gorgeous narrow brand-new bridge"], answer:1, feedback:"Opinion (gorgeous) → Size (narrow) → Age (brand-new) → Colour (copper). 'a gorgeous narrow brand-new copper bridge' is correct!" },
+  { section:"⚡ Adjective Challenge", q:"Which is the correct order for: Opinion (horrible) + Size (big) + Colour (dark) + hill", options:["a big horrible dark hill","a dark big horrible hill","a horrible big dark hill","a horrible dark big hill"], answer:2, feedback:"Opinion (horrible) → Size (big) → Colour (dark). 'a horrible big dark hill' is correct!" },
+  { section:"⚡ Adjective Challenge", q:"Choose the correct word to fill the blank:\n'a _____ tall dark tower'", options:["ancient","scarlet","terrible","huge"], answer:2, feedback:"The blank sits at the very beginning — reserved for an Opinion adjective like 'terrible'." },
+  { section:"⚡ Adjective Challenge", q:"Choose the correct word for the blank:\n'a long _____ silver chain'", options:["charming","ancient","scarlet","wonderful"], answer:1, feedback:"The blank sits between Size and Colour — we need an Age adjective like 'ancient'!" },
+  { section:"⚡ Adjective Challenge", q:"Find the mistake: 'She found a copper lovely long ancient chain in the chest.'", options:["No mistake.","Correct order: a lovely long ancient copper chain.","Correct order: an ancient lovely long copper chain.","Correct order: a long lovely ancient copper chain."], answer:1, feedback:"Opinion (lovely) → Size (long) → Age (ancient) → Colour (copper). Correct: 'She found a lovely long ancient copper chain in the chest.'" }
 ];
 
-let activeQuestions = [];
-let current = 0;
-let score = 0;
-let answered = false;
-let activeUnit = '';
+let activeQuestions=[], current=0, score=0, answered=false, activeUnit='';
 
-function shuffle(arr) {
-  const a = arr.slice();
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
+function shuffle(arr){
+  const a=arr.slice();
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
   return a;
 }
 
-function startQuiz(unit) {
-  activeUnit = unit;
-  if (unit === 'A') activeQuestions = shuffle(BANK_A);
-  else if (unit === 'B') activeQuestions = shuffle(BANK_B);
-  else if (unit === 'C') activeQuestions = shuffle(BANK_C);
-  else activeQuestions = shuffle(BANK_D);
-
-  current = 0;
-  score = 0;
-  answered = false;
-
-  document.getElementById('menuScreen').style.display = 'none';
-  document.getElementById('endScreen').style.display = 'none';
-  document.getElementById('quizScreen').style.display = 'block';
+function startQuiz(unit){
+  activeUnit=unit;
+  const banks={A:BANK_A,B:BANK_B,C:BANK_C,D:BANK_D};
+  activeQuestions=shuffle(banks[unit]);
+  current=0; score=0; answered=false;
+  document.getElementById('menuScreen').style.display='none';
+  document.getElementById('endScreen').style.display='none';
+  document.getElementById('quizScreen').style.display='block';
   render();
 }
 
-function exitToMenu() {
-  if (!answered && current > 0) {
-    if (!confirm('Exit to menu? Your progress will be lost.')) return;
-  }
+function exitToMenu(){
+  if(current>0){if(!confirm('Exit to menu? Your progress will be lost.')) return;}
   goMenu();
 }
-
-function goMenu() {
-  document.getElementById('quizScreen').style.display = 'none';
-  document.getElementById('endScreen').style.display = 'none';
-  document.getElementById('menuScreen').style.display = 'block';
+function goMenu(){
+  document.getElementById('quizScreen').style.display='none';
+  document.getElementById('endScreen').style.display='none';
+  document.getElementById('menuScreen').style.display='block';
 }
+function retryQuiz(){ startQuiz(activeUnit); }
 
-function retryQuiz() {
-  document.getElementById('endScreen').style.display = 'none';
-  startQuiz(activeUnit);
-}
+function render(){
+  const total=activeQuestions.length;
+  if(current>=total){showEnd();return;}
+  const q=activeQuestions[current];
+  const pct=Math.round((current/total)*100);
+  document.getElementById('progressBar').style.width=pct+'%';
+  document.getElementById('progressLabel').textContent='Question '+(current+1)+' of '+total;
+  document.getElementById('scoreDisplay').textContent='⭐ Score: '+score;
+  answered=false;
+  const area=document.getElementById('quizArea');
+  area.innerHTML='';
 
-function render() {
-  const total = activeQuestions.length;
-  if (current >= total) { showEnd(); return; }
-
-  const q = activeQuestions[current];
-  const pct = Math.round((current / total) * 100);
-  document.getElementById('progressBar').style.width = pct + '%';
-  document.getElementById('progressLabel').textContent = `Question ${current + 1} of ${total}`;
-  document.getElementById('scoreDisplay').textContent = `⭐ Score: ${score}`;
-
-  answered = false;
-  const area = document.getElementById('quizArea');
-  area.innerHTML = '';
-
-  const sh = document.createElement('div');
-  sh.className = 'section-header';
-  sh.textContent = q.section;
+  const sh=document.createElement('div');
+  sh.className='section-header'; sh.textContent=q.section;
   area.appendChild(sh);
 
-  const card = document.createElement('div');
-  card.className = 'question-card';
-
-  const qt = document.createElement('div');
-  qt.className = 'question-text';
-  qt.textContent = q.q;
+  const card=document.createElement('div'); card.className='question-card';
+  const qt=document.createElement('div'); qt.className='question-text'; qt.textContent=q.q;
   card.appendChild(qt);
 
-  const grid = document.createElement('div');
-  grid.className = 'options-grid';
-
-  q.options.forEach((opt, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'option-btn';
-    btn.textContent = opt;
-    btn.onclick = () => select(btn, i, q, grid);
+  const grid=document.createElement('div'); grid.className='options-grid';
+  q.options.forEach((opt,i)=>{
+    const btn=document.createElement('button'); btn.className='option-btn'; btn.textContent=opt;
+    btn.onclick=()=>select(btn,i,q,grid);
     grid.appendChild(btn);
   });
-
   card.appendChild(grid);
 
-  const fb = document.createElement('div');
-  fb.className = 'feedback';
-  fb.id = 'feedback';
+  const fb=document.createElement('div'); fb.className='feedback'; fb.id='feedback';
   card.appendChild(fb);
 
-  const nav = document.createElement('div');
-  nav.className = 'nav-row';
-  const nb = document.createElement('button');
-  nb.className = 'next-btn';
-  nb.id = 'nextBtn';
-  nb.textContent = current < total - 1 ? 'Next ➡️' : 'See Results 🏆';
-  nb.onclick = () => { current++; render(); };
-  nav.appendChild(nb);
-  card.appendChild(nav);
-
+  const nav=document.createElement('div'); nav.className='nav-row';
+  const nb=document.createElement('button'); nb.className='next-btn'; nb.id='nextBtn';
+  nb.textContent=current<total-1?'Next ➡️':'See Results 🏆';
+  nb.onclick=()=>{current++;render();};
+  nav.appendChild(nb); card.appendChild(nav);
   area.appendChild(card);
 }
 
-function select(btn, i, q, grid) {
-  if (answered) return;
-  answered = true;
-
-  const buttons = grid.querySelectorAll('.option-btn');
-  buttons.forEach(b => b.disabled = true);
-
-  const fb = document.getElementById('feedback');
-  const nb = document.getElementById('nextBtn');
-
-  if (i === q.answer) {
-    btn.classList.add('correct');
-    score++;
-    fb.className = 'feedback correct';
-    fb.textContent = "✅ " + q.feedback;
+function select(btn,i,q,grid){
+  if(answered) return; answered=true;
+  const buttons=grid.querySelectorAll('.option-btn');
+  buttons.forEach(b=>b.disabled=true);
+  const fb=document.getElementById('feedback');
+  const nb=document.getElementById('nextBtn');
+  if(i===q.answer){
+    btn.classList.add('correct'); score++;
+    fb.className='feedback correct'; fb.textContent='✅ '+q.feedback;
   } else {
-    btn.classList.add('wrong');
-    buttons[q.answer].classList.add('correct');
-    fb.className = 'feedback wrong';
-    fb.textContent = '❌ ' + q.feedback;
+    btn.classList.add('wrong'); buttons[q.answer].classList.add('correct');
+    fb.className='feedback wrong'; fb.textContent='❌ '+q.feedback;
   }
-
   nb.classList.add('show');
-  document.getElementById('scoreDisplay').textContent = `⭐ Score: ${score}`;
+  document.getElementById('scoreDisplay').textContent='⭐ Score: '+score;
 }
 
-function showEnd() {
-  document.getElementById('quizScreen').style.display = 'none';
-  const total = activeQuestions.length;
-  const pct = Math.round((score / total) * 100);
+function showEnd(){
+  document.getElementById('quizScreen').style.display='none';
+  const total=activeQuestions.length;
+  const pct=Math.round((score/total)*100);
+  const wrong=total-score;
+  const pts=score*10;
+  const endDiv=document.getElementById('endScreen');
+  endDiv.style.display='block';
 
-  let trophy = '🏆', title = 'Quiz Complete!', msg = '';
-  if (pct === 100) {
-    trophy = '🌟'; title = 'Perfect Score!';
-    msg = 'Amazing! You got every single question right. You are a true Adjective Explorer — well done!';
-  } else if (pct >= 80) {
-    trophy = '🎉'; title = 'Brilliant Work!';
-    msg = 'You really know your adjective patterns! Just a few more to perfect — give it another try!';
-  } else if (pct >= 60) {
-    trophy = '👍'; title = 'Good Effort!';
-    msg = 'You understand the basics. Review the ordering rules (Opinion → Size → Age → Colour) and try again!';
+  if(pct>=70){
+    let trophy='🏆',title='',subtitle='';
+    if(pct===100){trophy='🏆';title='Spectacular Job!';subtitle='You are officially a certified Adjective Explorer!';}
+    else if(pct>=85){trophy='⭐';title='Excellent Work!';subtitle='You have a strong grasp of adjective order!';}
+    else{trophy='🌟';title='Great Job!';subtitle='Well done — you passed the adjective quiz!';}
+
+    endDiv.innerHTML=
+      '<div class="stars-row">'+
+        '<span class="star" id="es1">⭐</span>'+
+        '<span class="star" id="es2">⭐</span>'+
+        '<span class="star" id="es3">⭐</span>'+
+        '<span class="star" id="es4">⭐</span>'+
+        '<span class="star" id="es5">⭐</span>'+
+      '</div>'+
+      '<span class="trophy-icon">'+trophy+'</span>'+
+      '<div class="end-title">'+title+'</div>'+
+      '<div class="end-subtitle">'+subtitle+'</div>'+
+      '<div class="score-pills">'+
+        '<div class="pill"><span class="pv" style="color:#f5a623">'+pts+'</span><span class="pl">Points</span></div>'+
+        '<div class="pill"><span class="pv" style="color:#43a047">✅ '+score+'</span><span class="pl">Correct</span></div>'+
+        '<div class="pill"><span class="pv" style="color:#e53935">❌ '+wrong+'</span><span class="pl">Wrong</span></div>'+
+        '<div class="pill"><span class="pv" style="color:#f5a623">'+pct+'%</span><span class="pl">Score</span></div>'+
+      '</div>'+
+      '<div class="end-buttons">'+
+        '<button class="btn-retry" onclick="retryQuiz()">🔄 Try Again</button>'+
+        '<button class="btn-menu" onclick="goMenu()">🏠 Menu</button>'+
+      '</div>'+
+      '<div class="review-box">'+
+        '<span class="review-badge">🔒 Notice: For Parents &amp; Educators</span>'+
+        '<div class="review-heading">How did you like this complete resource bundle?</div>'+
+        '<div class="review-body">Thank you for choosing <strong>Agarutan Print</strong>! We hope this combination of printable worksheets, the digital fillable PDF, and the interactive quiz bonus is helping to build your student skills.<br><br>If this resource bundle added value to your student learning experience, please take a brief moment to share your feedback on Etsy. Your review helps us continue creating high-quality learning assets!</div>'+
+        '<a href="https://www.etsy.com/your/purchases" target="_blank" class="review-btn">Review This Resource Bundle</a>'+
+      '</div>';
+
+    [1,2,3,4,5].forEach((n,i)=>{
+      setTimeout(()=>{const s=document.getElementById('es'+n);if(s)s.classList.add('pop');},200+i*160);
+    });
+
   } else {
-    trophy = '📖'; title = 'Keep Practising!';
-    msg = 'Remember our layout rules: Opinion always comes first, and Colour sits closest to the noun! You can do it!';
+    endDiv.innerHTML=
+      '<div class="low-score-card">'+
+        '<span class="ls-emoji">📚</span>'+
+        '<h2>Keep Practising!</h2>'+
+        '<p>You scored <strong>'+pct+'%</strong> ('+score+'/'+total+'). Remember: Opinion → Size → Age → Colour → Noun. Aim for 70% or higher!</p>'+
+        '<div class="low-pills">'+
+          '<div class="low-pill"><span class="pv" style="color:#f5a623">'+pts+'</span><span class="pl">Points</span></div>'+
+          '<div class="low-pill"><span class="pv" style="color:#43a047">✅ '+score+'</span><span class="pl">Correct</span></div>'+
+          '<div class="low-pill"><span class="pv" style="color:#e53935">❌ '+wrong+'</span><span class="pl">Wrong</span></div>'+
+          '<div class="low-pill"><span class="pv" style="color:#f5a623">'+pct+'%</span><span class="pl">Score</span></div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="end-buttons">'+
+        '<button class="btn-retry" onclick="retryQuiz()">🔄 Try Again</button>'+
+        '<button class="btn-menu" onclick="goMenu()">🏠 Menu</button>'+
+      '</div>';
   }
-
-  document.getElementById('trophyEmoji').textContent = trophy;
-  document.getElementById('endTitle').textContent = title;
-  document.getElementById('finalScore').textContent = `${score} / ${total}`;
-  document.getElementById('finalPct').textContent = `${pct}% correct`;
-  document.getElementById('finalMsg').textContent = msg;
-  document.getElementById('endScreen').style.display = 'block';
 }
 </script>
 </body>
